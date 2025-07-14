@@ -1,4 +1,3 @@
-// app/api/tip/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
@@ -26,8 +25,9 @@ export async function POST(req: NextRequest) {
     const tip = completion.choices[0]?.message?.content?.trim();
 
     return NextResponse.json({ tip: tip || "לא התקבל טיפ. נסה שוב." });
-  } catch (error: any) {
-    console.error("OpenAI Error:", error);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("OpenAI Error:", message);
     return NextResponse.json(
       { tip: "שגיאה בשירות הטיפים. נסה שוב מאוחר יותר." },
       { status: 500 }

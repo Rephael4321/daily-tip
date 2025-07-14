@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import TipForm from "@/components/tip-form";
 import TipDisplay from "@/components/tip-display";
@@ -20,7 +21,7 @@ export default function Home() {
       });
       const data = await res.json();
       setTip(data.tip);
-    } catch (e) {
+    } catch (_error) {
       setTip("שגיאה בקבלת הטיפ. נסה שוב.");
     } finally {
       setLoading(false);
