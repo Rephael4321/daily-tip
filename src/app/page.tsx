@@ -21,7 +21,8 @@ export default function Home() {
       });
       const data = await res.json();
       setTip(data.tip);
-    } catch (_error) {
+    } catch (error) {
+      console.error(error);
       setTip("שגיאה בקבלת הטיפ. נסה שוב.");
     } finally {
       setLoading(false);
